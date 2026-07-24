@@ -914,6 +914,8 @@ p{
 
     position:relative;
     overflow:hidden;
+}
+
     .stats::before{
 
     content:"";
@@ -958,7 +960,7 @@ p{
     }
 
 }
-}
+
 
 .stat{
     padding:18px 24px;
