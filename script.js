@@ -50,60 +50,93 @@
     // =========================
 
 
-    contactForm?.addEventListener(
-        "submit",
-        (event)=>{
+    
+contactForm?.addEventListener(
+    "submit",
+    async (event)=>{
 
-            event.preventDefault();
-
-
-            const name =
-                document.getElementById("name")?.value.trim() ?? "";
+        event.preventDefault();
 
 
-            const contact =
-                document.getElementById("contact")?.value.trim() ?? "";
+        const name =
+            document.getElementById("name")?.value.trim() ?? "";
 
 
-            const message =
-                document.getElementById("message")?.value.trim() ?? "";
+        const contact =
+            document.getElementById("contact")?.value.trim() ?? "";
+
+
+        const message =
+            document.getElementById("message")?.value.trim() ?? "";
 
 
 
-            if(!name || !contact || !message){
-
-                if(formMessage){
-
-                    formMessage.textContent =
-                    "Пожалуйста, заполните все поля.";
-
-                    formMessage.style.color="#B4534C";
-
-                }
-
-                return;
-
-            }
-
-
+        if(!name || !contact || !message){
 
             if(formMessage){
 
                 formMessage.textContent =
-                `Спасибо, ${name}! Ваша заявка принята.`;
+                "Пожалуйста, заполните все поля.";
+
+                formMessage.style.color="#B4534C";
+
+            }
+
+            return;
+
+        }
+
+
+
+        try{
+
+            const response = await fetch("/api/send-telegram",{
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+                    name,
+                    contact,
+                    message
+                })
+
+            });
+
+
+            const data = await response.json();
+
+
+            if(data.success){
+
+                formMessage.textContent =
+                `Спасибо, ${name}! Заявка отправлена.`;
 
                 formMessage.style.color="";
+
+                contactForm.reset();
+
+            }else{
+
+                throw new Error();
 
             }
 
 
+        }catch(error){
 
-            contactForm.reset();
+            formMessage.textContent =
+            "Ошибка отправки. Попробуйте позже.";
+
+            formMessage.style.color="#B4534C";
 
         }
-    );
 
-
+    }
+);
 
 
 
