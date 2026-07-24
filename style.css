@@ -603,51 +603,6 @@ p{
         transform .8s ease;
 }
 
-/* =========================
-   PLANT BREATHING MOTION
-========================= */
-
-.plant{
-
-    animation:
-        plantMove 6s ease-in-out infinite;
-
-    transform-origin:
-        bottom center;
-
-}
-
-
-
-@keyframes plantMove{
-
-    0%{
-
-        transform:
-            rotate(0deg)
-            translateY(0);
-
-    }
-
-
-    50%{
-
-        transform:
-            rotate(1.5deg)
-            translateY(-4px);
-
-    }
-
-
-    100%{
-
-        transform:
-            rotate(0deg)
-            translateY(0);
-
-    }
-
-}
 
 .stem{
     position:absolute;
