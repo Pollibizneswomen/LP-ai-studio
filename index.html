@@ -602,8 +602,28 @@
                         required
                     ></textarea>
 
+                    <label for="projectFile">Прикрепить файл</label>
+
+                    <input
+                        type="file"
+                        id="projectFile"
+                        accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.jpg,.jpeg,.png,.webp,.zip"
+                    >
+
                     <button type="submit">Отправить заявку</button>
                     <p class="form-message" id="formMessage"></p>
+                    <div class="success-card" id="successCard" hidden>
+                        <div class="success-card__icon">✓</div>
+
+                        <h3>Спасибо!</h3>
+
+                        <p>
+                            Ваша заявка успешно отправлена.
+                            Мы скоро свяжемся с вами.
+                        </p>
+
+                        <span>L&amp;P AI Studio</span>
+                    </div>
                 </form>
             </section>
         </section>

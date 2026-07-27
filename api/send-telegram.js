@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     }
 
 
-    const { name, contact, message } = req.body;
+    const { name, contact, message, fileUrl } = req.body;
 
 
     if (!name || !contact || !message) {
@@ -29,6 +29,8 @@ ${contact}
 
 💬 Описание:
 ${message}
+
+${fileUrl ? `📎 Файл клиента:\n${fileUrl}` : ""}
     `;
 
 
