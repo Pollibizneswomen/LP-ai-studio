@@ -381,6 +381,58 @@ const aiChatBody =
 
 let aiWelcomeShown = false;
 
+const CHAT_STORAGE_KEY = "lp-ai-chat-history";
+
+function saveChatHistory() {
+    if (!aiChatBody) return;
+
+    const messages = [];
+
+    aiChatBody.querySelectorAll(".ai-message").forEach(message => {
+        messages.push({
+            role: message.classList.contains("ai-message--user")
+                ? "user"
+                : "model",
+            text: message.textContent,
+        });
+    });
+
+    localStorage.setItem(
+        CHAT_STORAGE_KEY,
+        JSON.stringify(messages)
+    );
+}
+
+function loadChatHistory() {
+    if (!aiChatBody) return;
+
+    const saved = localStorage.getItem(CHAT_STORAGE_KEY);
+
+    if (!saved) return;
+
+    try {
+        const messages = JSON.parse(saved);
+
+        messages.forEach(item => {
+            const div = document.createElement("div");
+
+            div.className =
+                item.role === "user"
+                    ? "ai-message ai-message--user"
+                    : "ai-message";
+
+            div.textContent = item.text;
+
+            aiChatBody.appendChild(div);
+        });
+
+        aiChatBody.scrollTop = aiChatBody.scrollHeight;
+    } catch (e) {
+        console.error(e);
+        localStorage.removeItem(CHAT_STORAGE_KEY);
+    }
+}
+
 
 /* Открытие чата */
 
@@ -445,6 +497,7 @@ if (sendAiMessage && aiMessageInput && aiChatBody) {
 
 }
 
+loadChatHistory();
 
 /* Добавление сообщения пользователя */
 
@@ -478,6 +531,7 @@ async function sendMessage() {
     userMessage.textContent = text;
 
     aiChatBody.appendChild(userMessage);
+    saveChatHistory();
 
     aiMessageInput.value = "";
     aiMessageInput.focus();
@@ -524,6 +578,7 @@ async function sendMessage() {
         }
 
         aiChatBody.appendChild(aiMessage);
+        saveChatHistory();
         aiChatBody.scrollTop = aiChatBody.scrollHeight;
     } catch (error) {
         console.error(error);
@@ -535,6 +590,7 @@ async function sendMessage() {
         aiMessage.textContent = "Произошла ошибка. Попробуйте ещё раз.";
 
         aiChatBody.appendChild(aiMessage);
+        saveChatHistory();
         aiChatBody.scrollTop = aiChatBody.scrollHeight;
     }
 }
