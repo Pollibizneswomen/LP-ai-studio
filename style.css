@@ -4784,7 +4784,8 @@ footer a:hover::after{
 }
 
 .ai-message p {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
+    line-height: 1.6;
 }
 
 .ai-message p:last-child {
@@ -4793,16 +4794,77 @@ footer a:hover::after{
 
 .ai-message ul,
 .ai-message ol {
-    margin: 10px 0;
-    padding-left: 20px;
+    margin: 12px 0;
+    padding-left: 22px;
 }
 
 .ai-message li {
     margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.ai-message li:last-child {
+    margin-bottom: 0;
 }
 
 .ai-message strong {
     font-weight: 600;
+}
+
+.ai-message h1,
+.ai-message h2,
+.ai-message h3 {
+    margin: 16px 0 10px;
+    color: inherit;
+    line-height: 1.3;
+}
+
+.ai-message h1 {
+    font-size: 22px;
+}
+
+.ai-message h2 {
+    font-size: 18px;
+}
+
+.ai-message h3 {
+    font-size: 16px;
+}
+
+.ai-message blockquote {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border-left: 4px solid #8aa98b;
+    background: rgba(138, 169, 139, 0.08);
+    border-radius: 6px;
+    color: #556357;
+}
+
+.ai-message hr {
+    margin: 18px 0;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ai-message code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.06);
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+}
+
+.ai-message pre {
+    margin: 14px 0;
+    padding: 12px;
+    overflow-x: auto;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.ai-message pre code {
+    padding: 0;
+    background: transparent;
 }
 
 .ai-message a {
@@ -4812,6 +4874,36 @@ footer a:hover::after{
 
 .ai-message a:hover {
     text-decoration: underline;
+}
+
+.ai-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px;
+    padding: 0 4px;
+}
+
+.ai-quick-action {
+    padding: 8px 12px;
+    border: 1px solid rgba(92, 125, 96, 0.18);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #5c7d60;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ai-quick-action:hover {
+    background: #5c7d60;
+    color: #ffffff;
+    border-color: #5c7d60;
+}
+
+.ai-quick-action:active {
+    transform: scale(0.97);
 }
 
 .ai-chat-footer {

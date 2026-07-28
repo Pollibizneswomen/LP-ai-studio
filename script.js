@@ -13,6 +13,7 @@
     const contactsSection = document.getElementById("contacts");
     const projectFileInput = document.getElementById("projectFile");
     const fileName = document.getElementById("fileName");
+    const aiQuickActions = document.getElementById("aiQuickActions");
 
     const CLOUDINARY_CLOUD_NAME = "xhnpsuzv";
     const CLOUDINARY_UPLOAD_PRESET = "lp_ai_client_files";
@@ -509,6 +510,27 @@ if (sendAiMessage && aiMessageInput && aiChatBody) {
 
 }
 
+/* Быстрые вопросы */
+
+if (aiQuickActions && aiMessageInput) {
+
+    aiQuickActions.addEventListener("click", (event) => {
+
+        const button = event.target.closest(".ai-quick-action");
+
+        if (!button) {
+            return;
+        }
+
+        aiMessageInput.value = button.dataset.message;
+
+        sendMessage();
+
+    });
+
+}
+
+
 loadChatHistory();
 
 function formatAiMessage(text) {
@@ -550,6 +572,10 @@ async function sendMessage() {
     const text = aiMessageInput.value.trim();
 
     if (!text) return;
+
+    if (aiQuickActions) {
+    aiQuickActions.style.display = "none";
+    }
 
     const chatHistory = [];
 
