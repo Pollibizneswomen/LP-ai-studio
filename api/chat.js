@@ -116,10 +116,16 @@ module.exports = async function handler(request, response) {
         if (!geminiResponse.ok) {
             console.error("Ошибка Gemini:", data);
 
+            const message = data?.error?.message || "";
+
+            if (message.includes("high demand")) {
+                return response.status(503).json({
+                    error: "Сейчас AI-консультант сильно загружен. Попробуйте снова через несколько секунд.",
+                });
+            }
+
             return response.status(geminiResponse.status).json({
-                error:
-                    data?.error?.message ||
-                    "Не удалось получить ответ от AI",
+                error: "Временно не удалось получить ответ от AI. Попробуйте ещё раз.",
             });
         }
 
