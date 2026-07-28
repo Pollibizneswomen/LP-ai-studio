@@ -604,26 +604,22 @@
 
                     <label for="projectFile">Прикрепить файл</label>
 
-                    <input
-                        type="file"
-                        id="projectFile"
-                        accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.jpg,.jpeg,.png,.webp,.zip"
-                    >
+                    <div class="file-upload">
+                        <input
+                            type="file"
+                            id="projectFile"
+                            accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.jpg,.jpeg,.png,.webp,.zip"
+                        >
+
+                        <label for="projectFile" class="file-upload-button">
+                            <span class="file-upload-icon">📎</span>
+                            <span id="fileName">Выберите файл</span>
+
+                        </label>
+                    </div>
 
                     <button type="submit">Отправить заявку</button>
-                    <p class="form-message" id="formMessage"></p>
-                    <div class="success-card" id="successCard" hidden>
-                        <div class="success-card__icon">✓</div>
-
-                        <h3>Спасибо!</h3>
-
-                        <p>
-                            Ваша заявка успешно отправлена.
-                            Мы скоро свяжемся с вами.
-                        </p>
-
-                        <span>L&amp;P AI Studio</span>
-                    </div>
+                    <p class="form-message" id="formMessage"></p>                    
                 </form>
             </section>
         </section>

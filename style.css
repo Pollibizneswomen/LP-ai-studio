@@ -4533,3 +4533,61 @@ footer a:hover::after{
         transform: scale(1);
     }
 }
+
+.file-upload {
+    position: relative;
+    width: 100%;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.file-upload-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 16px;
+
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(192, 164, 132, 0.38);
+    border-radius: 12px;
+
+    color: #667064;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.file-upload-button:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(111, 143, 113, 0.7);
+}
+
+.file-upload-button:focus-within {
+    border-color: #6f8f71;
+    box-shadow: 0 0 0 3px rgba(111, 143, 113, 0.14);
+}
+
+.file-upload-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+#fileName {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
+}

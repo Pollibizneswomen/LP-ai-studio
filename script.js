@@ -12,6 +12,7 @@
     const themeButton = document.getElementById("themeButton");
     const contactsSection = document.getElementById("contacts");
     const projectFileInput = document.getElementById("projectFile");
+    const fileName = document.getElementById("fileName");
 
     const CLOUDINARY_CLOUD_NAME = "xhnpsuzv";
     const CLOUDINARY_UPLOAD_PRESET = "lp_ai_client_files";
@@ -123,6 +124,18 @@ loadFormData();
     // CONTACT FORM
     // =========================
 
+    projectFileInput?.addEventListener("change", () => {
+        if (!fileName) return;
+
+        if (projectFileInput.files.length > 0) {
+            fileName.textContent =
+                projectFileInput.files[0].name;
+        } else {
+            fileName.textContent =
+                "Выберите файл";
+        }
+    });
+
     contactForm?.addEventListener(
         "submit",
         async (event) => {
@@ -205,46 +218,13 @@ loadFormData();
 
                 if (formMessage) {
                     formMessage.textContent =
-                        `✅ Спасибо, ${name}! Мы получили вашу заявку и скоро свяжемся с вами.`;
+                        `Спасибо, ${name}! Мы получили вашу заявку и скоро свяжемся с вами.`;
 
                     formMessage.className =
                         "form-message is-visible is-success";
                 }
 
-                if (contactForm && successCard) {
-                    contactForm.classList.add("is-hiding");
-
-                    setTimeout(() => {
-                        contactForm.hidden = true;
-                        contactForm.classList.remove("is-hiding");
-
-                        successCard.hidden = false;
-
-                        requestAnimationFrame(() => {
-                            successCard.classList.add("is-visible");
-                        });
-                    }, 350);
-
-                    setTimeout(() => {
-                        successCard.classList.remove("is-visible");
-
-                        setTimeout(() => {
-                            successCard.hidden = true;
-                            contactForm.hidden = false;
-
-                            requestAnimationFrame(() => {
-                                contactForm.style.opacity = "0";
-                                contactForm.style.transform = "translateY(12px)";
-
-                                requestAnimationFrame(() => {
-                                    contactForm.style.opacity = "";
-                                    contactForm.style.transform = "";
-                                });
-                            });
-                        }, 400);
-                    }, 5000);
-                }
-
+                
                 contactForm.reset();
                 clearFormData(); 
 
@@ -253,7 +233,7 @@ loadFormData();
 
                 if (formMessage) {
                     formMessage.textContent =
-                        "❌ Не удалось отправить заявку. Попробуйте ещё раз через несколько минут.";
+                        "Не удалось отправить заявку. Попробуйте ещё раз через несколько минут.";
 
                     formMessage.className =
                         "form-message is-visible is-error";
