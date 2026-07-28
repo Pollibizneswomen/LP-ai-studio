@@ -511,6 +511,89 @@ if (sendAiMessage && aiMessageInput && aiChatBody) {
 
 loadChatHistory();
 
+function formatAiMessage(text) {
+
+    const escapeHtml = (str) =>
+        str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+    let html = escapeHtml(text);
+
+    // Жирный текст **пример**
+    html = html.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
+
+    const lines = html.split("\n");
+
+    let result = "";
+    let inList = false;
+    let inNumberedList = false;
+
+    for (const line of lines) {
+
+        const trimmed = line.trim();
+
+        // Маркированный список
+        if (trimmed.startsWith("- ")) {
+
+            if (!inList) {
+                result += "<ul>";
+                inList = true;
+            }
+
+            if (inNumberedList) {
+                result += "</ol>";
+                inNumberedList = false;
+            }
+
+            result += `<li>${trimmed.substring(2)}</li>`;
+            continue;
+        }
+
+        // Нумерованный список
+        if (/^\d+\.\s/.test(trimmed)) {
+
+            if (!inNumberedList) {
+                result += "<ol>";
+                inNumberedList = true;
+            }
+
+            if (inList) {
+                result += "</ul>";
+                inList = false;
+            }
+
+            result += `<li>${trimmed.replace(/^\d+\.\s/, "")}</li>`;
+            continue;
+        }
+
+        if (inList) {
+            result += "</ul>";
+            inList = false;
+        }
+
+        if (inNumberedList) {
+            result += "</ol>";
+            inNumberedList = false;
+        }
+
+        if (trimmed === "") {
+            result += "<br>";
+        } else {
+            result += `<p>${trimmed}</p>`;
+        }
+    }
+
+    if (inList) result += "</ul>";
+    if (inNumberedList) result += "</ol>";
+
+    return result;
+}
+
 function resetChat() {
 
     localStorage.removeItem(CHAT_STORAGE_KEY);
@@ -611,7 +694,7 @@ async function sendMessage() {
             aiMessage.textContent =
                 data.error || "Произошла ошибка при обращении к AI.";
         } else {
-            aiMessage.textContent = data.reply;
+            aiMessage.innerHTML = formatAiMessage(data.reply);
         }
 
         aiChatBody.appendChild(aiMessage);
