@@ -359,3 +359,170 @@ loadFormData();
 
 console.log("L&P Studio работает");
 
+/* ===========================
+   AI Chat
+=========================== */
+
+const aiChatButton = document.getElementById("aiChatButton");
+const aiChatWindow = document.getElementById("aiChatWindow");
+const aiChatClose = document.getElementById("aiChatClose");
+
+const aiWelcomeMessage =
+    document.getElementById("aiWelcomeMessage");
+
+const aiMessageInput =
+    document.getElementById("aiMessageInput");
+
+const sendAiMessage =
+    document.getElementById("sendAiMessage");
+
+const aiChatBody =
+    document.querySelector(".ai-chat-body");
+
+let aiWelcomeShown = false;
+
+
+/* Открытие чата */
+
+if (aiChatButton && aiChatWindow) {
+
+    aiChatButton.addEventListener("click", () => {
+
+        const isOpening =
+            !aiChatWindow.classList.contains("is-open");
+
+        aiChatWindow.classList.toggle("is-open");
+
+        if (
+            isOpening &&
+            !aiWelcomeShown &&
+            aiWelcomeMessage
+        ) {
+
+            setTimeout(() => {
+
+                aiWelcomeMessage.classList.add("is-visible");
+                aiWelcomeShown = true;
+
+            }, 300);
+
+        }
+
+    });
+
+}
+
+
+/* Закрытие чата */
+
+if (aiChatClose && aiChatWindow) {
+
+    aiChatClose.addEventListener("click", () => {
+
+        aiChatWindow.classList.remove("is-open");
+
+    });
+
+}
+
+
+/* Отправка сообщения */
+
+if (sendAiMessage && aiMessageInput && aiChatBody) {
+
+    sendAiMessage.addEventListener("click", sendMessage);
+
+    aiMessageInput.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+            sendMessage();
+
+        }
+
+    });
+
+}
+
+
+/* Добавление сообщения пользователя */
+
+async function sendMessage() {
+
+    if (!aiMessageInput || !aiChatBody) return;
+
+    const text = aiMessageInput.value.trim();
+
+    if (!text) return;
+
+    // Сообщение пользователя
+    const userMessage = document.createElement("div");
+    userMessage.className = "ai-message ai-message--user";
+    userMessage.textContent = text;
+
+    aiChatBody.appendChild(userMessage);
+
+    aiMessageInput.value = "";
+    aiMessageInput.focus();
+
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    // Индикатор "AI печатает..."
+    const typing = document.createElement("div");
+    typing.className = "ai-typing";
+
+    typing.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+    `;
+
+    aiChatBody.appendChild(typing);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    try {
+
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: text
+            })
+        });
+
+        const data = await response.json();
+
+        typing.remove();
+
+        const aiMessage = document.createElement("div");
+        aiMessage.className = "ai-message";
+
+        if (!response.ok) {
+            aiMessage.textContent =
+                data.error || "Произошла ошибка при обращении к AI.";
+        } else {
+            aiMessage.textContent = data.reply;
+        }
+
+        aiChatBody.appendChild(aiMessage);
+        aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    } catch (error) {
+
+        console.error(error);
+
+        typing.remove();
+
+        const aiMessage = document.createElement("div");
+        aiMessage.className = "ai-message";
+        aiMessage.textContent = "Произошла ошибка. Попробуйте ещё раз.";
+
+        aiChatBody.appendChild(aiMessage);
+        aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    }
+
+}

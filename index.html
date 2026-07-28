@@ -694,6 +694,85 @@
 
 <script type="module" src="/script.js"></script>
 
+<button
+    class="ai-chat-button"
+    id="aiChatButton"
+    type="button"
+    aria-label="Открыть AI-консультанта"
+>
+    <svg class="ai-chat-icon" viewBox="0 0 32 32" aria-hidden="true">
+    <path
+        d="M6.5 7.5C6.5 5.84 7.84 4.5 9.5 4.5H22.5C24.16 4.5 25.5 5.84 25.5 7.5V18.5C25.5 20.16 24.16 21.5 22.5 21.5H15L9 26V21.5H9.5C7.84 21.5 6.5 20.16 6.5 18.5V7.5Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+    <path
+        d="M16 8.5L16.7 10.3L18.5 11L16.7 11.7L16 13.5L15.3 11.7L13.5 11L15.3 10.3L16 8.5Z"
+        fill="currentColor"
+    />
+    <path
+        d="M21 12.5L21.45 13.55L22.5 14L21.45 14.45L21 15.5L20.55 14.45L19.5 14L20.55 13.55L21 12.5Z"
+        fill="currentColor"
+    />
+</svg>
+</button>
+
+<div class="ai-chat-window" id="aiChatWindow">
+
+    <div class="ai-chat-header">
+        <div class="ai-chat-avatar">✦</div>
+
+        <div class="ai-chat-info">
+            <h3>L&P AI Studio</h3>
+            <p>AI-консультант</p>
+        </div>
+        <button
+            class="ai-chat-close"
+            id="aiChatClose"
+            type="button"
+            aria-label="Закрыть чат"
+        >
+            ×
+        </button>
+    </div>
+
+    <div class="ai-chat-body">
+
+        <div class="ai-message ai-message--welcome" id="aiWelcomeMessage">
+
+            👋 Здравствуйте!
+
+            <br><br>
+
+            Я AI-консультант L&P AI Studio.
+
+            Отвечу на вопросы, помогу подобрать услугу и оформить заявку.
+
+        </div>
+
+    </div>
+
+    <div class="ai-chat-footer">
+
+        <input
+            type="text"
+            id="aiMessageInput"
+            placeholder="Введите сообщение..."
+        >
+
+        <button
+            id="sendAiMessage"
+            type="button"
+        >
+            ➜
+        </button>
+
+    </div>
+
+</div>
 
 </body>
 </html>
