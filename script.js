@@ -449,12 +449,28 @@ if (sendAiMessage && aiMessageInput && aiChatBody) {
 /* Добавление сообщения пользователя */
 
 async function sendMessage() {
-
     if (!aiMessageInput || !aiChatBody) return;
 
     const text = aiMessageInput.value.trim();
 
     if (!text) return;
+
+    const chatHistory = [];
+
+    aiChatBody
+        .querySelectorAll(".ai-message")
+        .forEach(message => {
+            const messageText = message.textContent.trim();
+
+            if (!messageText) return;
+
+            chatHistory.push({
+                role: message.classList.contains("ai-message--user")
+                    ? "user"
+                    : "model",
+                text: messageText,
+            });
+        });
 
     // Сообщение пользователя
     const userMessage = document.createElement("div");
@@ -482,15 +498,15 @@ async function sendMessage() {
     aiChatBody.scrollTop = aiChatBody.scrollHeight;
 
     try {
-
         const response = await fetch("/api/chat", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                message: text
-            })
+                message: text,
+                history: chatHistory,
+            }),
         });
 
         const data = await response.json();
@@ -509,9 +525,7 @@ async function sendMessage() {
 
         aiChatBody.appendChild(aiMessage);
         aiChatBody.scrollTop = aiChatBody.scrollHeight;
-
     } catch (error) {
-
         console.error(error);
 
         typing.remove();
@@ -522,7 +536,5 @@ async function sendMessage() {
 
         aiChatBody.appendChild(aiMessage);
         aiChatBody.scrollTop = aiChatBody.scrollHeight;
-
     }
-
 }

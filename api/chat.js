@@ -6,7 +6,7 @@ module.exports = async function handler(request, response) {
     }
 
     try {
-        const { message } = request.body || {};
+        const { message, history = [] } = request.body || {};
 
         if (!message || typeof message !== "string") {
             return response.status(400).json({
@@ -22,30 +22,74 @@ module.exports = async function handler(request, response) {
             });
         }
 
-        const prompt = `
-Ты — вежливый AI-консультант студии L&P AI Studio.
+        const systemPrompt = `
+Ты — AI-консультант студии L&P AI Studio.
 
 О студии:
 • Создание текстов для бизнеса.
-• Карточки товаров для маркетплейсов.
+• Оформление карточек товаров для маркетплейсов.
 • Создание изображений и AI-контента.
-• AI-автоматизация бизнеса.
+• Внедрение AI-автоматизации.
 
 Правила общения:
 - Отвечай только на русском языке.
-- Будь дружелюбным и профессиональным.
+- Будь дружелюбным, естественным и профессиональным.
 - Не здоровайся в каждом сообщении.
-- Приветствуй пользователя только в самом первом ответе новой переписки.
-- В следующих сообщениях сразу переходи к ответу на вопрос.
-- Не повторяй своё представление ("Я AI-консультант..."), если уже представился ранее.
-- Пиши естественно, как живой менеджер.
-- Пиши понятными предложениями.
+- Если в истории переписки уже было приветствие, сразу отвечай на вопрос.
+- Не представляйся повторно.
+- Учитывай предыдущие сообщения пользователя.
+- Не повторяй информацию без необходимости.
+- Пиши понятно и не слишком длинно.
+- Не используй символы Markdown: звёздочки, решётки и обратные кавычки.
 - Не придумывай цены, сроки и гарантии.
-- Если пользователь хочет заказать услугу — предложи оставить заявку через форму на сайте.
-
-Сообщение клиента:
-${message}
+- Если пользователь хочет заказать услугу, предложи оставить заявку через форму на сайте.
         `.trim();
+
+        const safeHistory = Array.isArray(history)
+            ? history
+                  .filter(
+                      item =>
+                          item &&
+                          typeof item.text === "string" &&
+                          (item.role === "user" || item.role === "model")
+                  )
+                  .slice(-10)
+            : [];
+
+        const contents = [
+            {
+                role: "user",
+                parts: [
+                    {
+                        text: systemPrompt,
+                    },
+                ],
+            },
+            {
+                role: "model",
+                parts: [
+                    {
+                        text: "Понял правила и готов консультировать клиента.",
+                    },
+                ],
+            },
+            ...safeHistory.map(item => ({
+                role: item.role,
+                parts: [
+                    {
+                        text: item.text,
+                    },
+                ],
+            })),
+            {
+                role: "user",
+                parts: [
+                    {
+                        text: message.trim(),
+                    },
+                ],
+            },
+        ];
 
         const geminiResponse = await fetch(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent",
@@ -56,16 +100,7 @@ ${message}
                     "x-goog-api-key": apiKey,
                 },
                 body: JSON.stringify({
-                    contents: [
-                        {
-                            role: "user",
-                            parts: [
-                                {
-                                    text: prompt,
-                                },
-                            ],
-                        },
-                    ],
+                    contents,
                     generationConfig: {
                         temperature: 0.7,
                         topP: 0.95,
@@ -88,11 +123,10 @@ ${message}
             });
         }
 
-        const reply =
-            data?.candidates?.[0]?.content?.parts
-                ?.map(part => part.text || "")
-                .join("")
-                .trim();
+        const reply = data?.candidates?.[0]?.content?.parts
+            ?.map(part => part.text || "")
+            .join("")
+            .trim();
 
         if (!reply) {
             return response.status(500).json({
@@ -103,12 +137,12 @@ ${message}
         return response.status(200).json({
             reply,
         });
-
     } catch (error) {
-        console.error("Ошибка AI:", error);
+        console.error("Ошибка AI-чата:", error);
 
         return response.status(500).json({
             error: "Произошла ошибка при обращении к AI",
         });
     }
 };
+
