@@ -212,11 +212,11 @@ module.exports = async function handler(request, response) {
 
             const message = data?.error?.message || "";
 
-            if (message.includes("high demand")) {
-                return response.status(503).json({
-                    error: "Сейчас AI-консультант сильно загружен. Попробуйте снова через несколько секунд.",
-                });
-            }
+            //if (message.includes("high demand")) {
+         //       return response.status(503).json({
+           //         error: "Сейчас AI-консультант сильно загружен. Попробуйте снова через несколько секунд.",
+            //    });
+            //}
 
             return response.status(geminiResponse.status).json({
                 error: message || "Неизвестная ошибка Gemini",
