@@ -4847,6 +4847,46 @@ footer a:hover::after{
     background: #627f64;
 }
 
+.ai-chat-actions {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-chat-reset {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #5f6d61;
+
+    font-size: 18px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.ai-chat-reset:hover {
+    background: rgba(111, 143, 113, 0.12);
+    color: #3d5240;
+    transform: rotate(-180deg);
+}
+
 /* ===== AI CHAT CLOSE BUTTON ===== */
 
 .ai-chat-close {

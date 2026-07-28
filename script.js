@@ -366,6 +366,7 @@ console.log("L&P Studio работает");
 const aiChatButton = document.getElementById("aiChatButton");
 const aiChatWindow = document.getElementById("aiChatWindow");
 const aiChatClose = document.getElementById("aiChatClose");
+const aiChatReset = document.getElementById("aiChatReset");
 
 const aiWelcomeMessage =
     document.getElementById("aiWelcomeMessage");
@@ -477,6 +478,17 @@ if (aiChatClose && aiChatWindow) {
 
 }
 
+if (aiChatReset) {
+
+    aiChatReset.addEventListener("click", () => {
+
+        if (confirm("Начать новую переписку?")) {
+            resetChat();
+        }
+
+    });
+
+}
 
 /* Отправка сообщения */
 
@@ -498,6 +510,31 @@ if (sendAiMessage && aiMessageInput && aiChatBody) {
 }
 
 loadChatHistory();
+
+function resetChat() {
+
+    localStorage.removeItem(CHAT_STORAGE_KEY);
+
+    if (!aiChatBody) return;
+
+    aiChatBody.innerHTML = "";
+
+    if (aiWelcomeMessage) {
+
+        aiWelcomeShown = false;
+
+        aiWelcomeMessage.classList.remove("is-visible");
+
+        aiChatBody.appendChild(aiWelcomeMessage);
+
+        setTimeout(() => {
+            aiWelcomeMessage.classList.add("is-visible");
+            aiWelcomeShown = true;
+        }, 150);
+
+    }
+
+}
 
 /* Добавление сообщения пользователя */
 
