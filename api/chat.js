@@ -219,7 +219,8 @@ module.exports = async function handler(request, response) {
             }
 
             return response.status(geminiResponse.status).json({
-                error: "Временно не удалось получить ответ от AI. Попробуйте ещё раз.",
+                error: message || "Неизвестная ошибка Gemini",
+                details: data,
             });
         }
 
