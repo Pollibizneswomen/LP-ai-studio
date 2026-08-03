@@ -1,0 +1,1 @@
+import {initHeader} from "./components/header.js";import "./pages/cart.js";document.addEventListener("DOMContentLoaded",initHeader);

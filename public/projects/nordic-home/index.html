@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nordic Home — мебель для жизни</title>
+<meta name="description" content="Премиальная мебель в скандинавском стиле.">
+<link rel="stylesheet" href="css/style.css">
+<meta name="theme-color" content="#f7f3ec"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"></head>
+<body>
+<header class="site-header">
+  <div class="container header-main">
+    <button class="icon-button mobile-toggle" data-mobile-button aria-label="Меню"><svg><use href="assets/icons/sprite.svg#menu"></use></svg></button>
+    <a class="brand" href="">NORDIC HOME</a>
+    <nav class="desktop-nav">
+      <button data-mega-button>Каталог <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+      <a href="catalog.html?collection=new">Новинки</a>
+      <a href="catalog.html?collection=bestsellers">Бестселлеры</a>
+      <a href="#story">О бренде</a>
+      <a href="#service">Сервис</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" data-search-button aria-label="Поиск"><svg><use href="assets/icons/sprite.svg#search"></use></svg></button>
+      <a class="icon-button" href="account.html#wishlist" aria-label="Избранное"><svg><use href="assets/icons/sprite.svg#heart"></use></svg><span class="badge" data-wishlist-count hidden>0</span></a>
+      <a class="icon-button" href="cart.html" aria-label="Корзина"><svg><use href="assets/icons/sprite.svg#bag"></use></svg><span class="badge" data-cart-count hidden>0</span></a>
+    </div>
+  </div>
+
+  <div class="mega" data-mega>
+    <div class="container mega__inner">
+      <div class="mega__groups">
+        <section><h3>Гостиная</h3><a href="catalog.html?category=sofas">Диваны</a><a href="catalog.html?category=chairs">Кресла</a><a href="catalog.html?category=tables">Журнальные столы</a><a href="catalog.html?category=tv">Тумбы под ТВ</a></section>
+        <section><h3>Столовая</h3><a href="catalog.html?category=dining-tables">Обеденные столы</a><a href="catalog.html?category=dining-chairs">Стулья</a><a href="catalog.html?category=benches">Скамьи</a><a href="catalog.html?category=bar">Барные стулья</a></section>
+        <section><h3>Спальня</h3><a href="catalog.html?category=beds">Кровати</a><a href="catalog.html?category=nightstands">Тумбы</a><a href="catalog.html?category=dressers">Комоды</a><a href="catalog.html?category=mattresses">Матрасы</a></section>
+        <section><h3>Декор</h3><a href="catalog.html?category=lighting">Освещение</a><a href="catalog.html?category=rugs">Ковры</a><a href="catalog.html?category=mirrors">Зеркала</a><a href="catalog.html?category=textile">Текстиль</a></section>
+      </div>
+      <a class="mega__feature" href="catalog.html?collection=new"><img src="assets/images/luna.jpg" alt="Soft Forms"><div><span>Новая коллекция</span><strong>Soft Forms 2026</strong><small>Смотреть →</small></div></a>
+    </div>
+  </div>
+
+  <section class="search-panel" data-search>
+    <div class="container search-panel__inner">
+      <label class="search-field"><svg><use href="assets/icons/sprite.svg#search"></use></svg><span class="sr-only">Поиск</span><input data-search-input type="search" placeholder="Что вы ищете?"></label>
+      <div class="search-results" data-search-results><p class="search-empty">Начните вводить название товара.</p></div>
+    </div>
+  </section>
+</header>
+
+<aside class="mobile-panel" data-mobile>
+  <div class="mobile-panel__head"><a class="brand" href="">NORDIC HOME</a><button class="icon-button" data-mobile-button><svg><use href="assets/icons/sprite.svg#close"></use></svg></button></div>
+  <nav><a href="catalog.html">Каталог</a><a href="catalog.html?collection=new">Новинки</a><a href="catalog.html?collection=bestsellers">Бестселлеры</a><a href="#story">О бренде</a><a href="#service">Сервис</a><a href="account.html#wishlist">Избранное</a><a href="cart.html">Корзина</a></nav>
+</aside>
+<div class="overlay" data-overlay></div>
+
+<main id="main-content">
+<section class="hero">
+  <img class="hero__image" src="assets/images/hero.jpg" alt="Гостиная Nordic Home">
+  <div class="container hero__content">
+    <div class="hero__copy" data-reveal>
+      <p class="eyebrow">Scandinavian living</p>
+      <h1 class="hero__title">Designed<br>for Living</h1>
+      <p class="hero__text">Мебель, которая делает пространство спокойнее, теплее и удобнее. Натуральные материалы, мягкие формы и честная функциональность.</p>
+      <a class="button button--light" href="catalog.html?collection=new">Смотреть коллекцию <svg><use href="assets/icons/sprite.svg#arrow"></use></svg></a>
+      <div class="hero__meta"><span>Бесплатная доставка от 80 000 ₽</span><span>Гарантия до 5 лет</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading" data-reveal><div><p class="eyebrow">Категории</p><h2 class="section-title">Для каждой комнаты</h2></div><p class="section-intro">Создавайте цельный интерьер с мебелью, которая сочетается по пропорциям, материалам и оттенкам.</p></div>
+    <div class="category-grid">
+      <a class="category-card" href="catalog.html?room=living" data-reveal><img src="assets/images/aurora.jpg" alt="Гостиная"><div class="category-card__body"><h3>Гостиная</h3></div></a>
+      <a class="category-card" href="catalog.html?room=dining" data-reveal><img src="assets/images/berg.jpg" alt="Столовая"><div class="category-card__body"><h3>Столовая</h3></div></a>
+      <a class="category-card" href="catalog.html?room=bedroom" data-reveal><img src="assets/images/nora.jpg" alt="Спальня"><div class="category-card__body"><h3>Спальня</h3></div></a>
+      <a class="category-card" href="catalog.html?room=decor" data-reveal><img src="assets/images/sol.jpg" alt="Декор"><div class="category-card__body"><h3>Декор</h3></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-heading" data-reveal><div><p class="eyebrow">Выбор Nordic Home</p><h2 class="section-title">Новые поступления</h2></div><a class="button button--outline" href="catalog.html">Весь каталог</a></div>
+    <div class="product-grid" data-products></div>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="container">
+    <div class="story" data-reveal>
+      <div class="story__copy"><p class="eyebrow">Наша философия</p><h2>Natural materials.<br>Timeless design.</h2><p>Мы создаём мебель без визуального шума. Каждая форма имеет назначение, каждый материал выбран за долговечность и тактильность.</p><a class="button button--light" href="about.html">Узнать о бренде</a></div>
+      <div class="story__image"><img src="assets/images/nora.jpg" alt="Материалы Nordic Home"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" id="service">
+  <div class="container">
+    <div class="section-heading" data-reveal><div><p class="eyebrow">Сервис</p><h2 class="section-title">Продумано до деталей</h2></div><p class="section-intro">От выбора ткани до установки мебели дома — сопровождаем заказ на каждом этапе.</p></div>
+    <div class="values-grid">
+      <article class="value-card" data-reveal><span>01</span><h3>Честные материалы</h3><p>Сертифицированная древесина, безопасные покрытия и износостойкие ткани.</p></article>
+      <article class="value-card" data-reveal><span>02</span><h3>Доставка и сборка</h3><p>Поднимаем, собираем, устанавливаем и забираем упаковку.</p></article>
+      <article class="value-card" data-reveal><span>03</span><h3>Поддержка</h3><p>Гарантия до пяти лет и помощь с уходом и ремонтом.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section newsletter">
+  <div class="container newsletter__inner">
+    <div data-reveal><p class="eyebrow">Nordic Notes</p><h2 class="section-title">Интерьерные идеи<br>без лишнего шума</h2><p class="section-intro">Новые коллекции и советы — не чаще двух раз в месяц.</p></div>
+    <form class="newsletter__form" data-newsletter data-reveal><label class="sr-only" for="email">E-mail</label><input id="email" type="email" placeholder="Ваш e-mail" required><button class="button button--dark">Подписаться</button></form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div><a class="brand" href="">NORDIC HOME</a><p>Современная мебель для спокойной и красивой жизни.</p></div>
+    <div><h3>Каталог</h3><a href="catalog.html">Диваны</a><a href="catalog.html">Кресла</a><a href="catalog.html">Столы</a><a href="catalog.html">Хранение</a></div>
+    <div><h3>Покупателям</h3><a href="#">Доставка и оплата</a><a href="#">Возврат</a><a href="#">Гарантия</a><a href="#">Уход</a></div>
+    <div><h3>Компания</h3><a href="about.html">О бренде</a><a href="#">Контакты</a><a href="#">Для дизайнеров</a><a href="#">Вакансии</a></div>
+  </div>
+  <div class="container footer__bottom">© 2026 Nordic Home. Проект L&amp;P AI Studio.</div>
+</footer>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/global.js"></script></body>
+</html>

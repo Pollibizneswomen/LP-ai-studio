@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nordic-home-demo.vercel.app/sitemap.xml

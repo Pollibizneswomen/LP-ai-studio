@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Каталог — Nordic Home</title>
+<meta name="description" content="Каталог мебели Nordic Home: диваны, кресла, столы, системы хранения, кровати и освещение.">
+<link rel="stylesheet" href="css/style.css">
+<meta name="theme-color" content="#f7f3ec"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"></head>
+<body>
+<header class="site-header">
+  <div class="container header-main">
+    <button class="icon-button mobile-toggle" data-mobile-button aria-label="Меню"><svg><use href="assets/icons/sprite.svg#menu"></use></svg></button>
+    <a class="brand" href="">NORDIC HOME</a>
+    <nav class="desktop-nav">
+      <button data-mega-button>Каталог <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+      <a href="catalog.html?new=1">Новинки</a>
+      <a href="catalog.html?sort=rating">Бестселлеры</a>
+      <a href="index.html#story">О бренде</a>
+      <a href="index.html#service">Сервис</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" data-search-button aria-label="Поиск"><svg><use href="assets/icons/sprite.svg#search"></use></svg></button>
+      <a class="icon-button" href="account.html#wishlist" aria-label="Избранное"><svg><use href="assets/icons/sprite.svg#heart"></use></svg><span class="badge" data-wishlist-count hidden>0</span></a>
+      <a class="icon-button" href="cart.html" aria-label="Корзина"><svg><use href="assets/icons/sprite.svg#bag"></use></svg><span class="badge" data-cart-count hidden>0</span></a>
+    </div>
+  </div>
+
+  <div class="mega" data-mega>
+    <div class="container mega__inner">
+      <div class="mega__groups">
+        <section><h3>Гостиная</h3><a href="catalog.html?category=Диваны">Диваны</a><a href="catalog.html?category=Кресла">Кресла</a><a href="catalog.html?category=Столы">Журнальные столы</a><a href="catalog.html?category=Хранение">Хранение</a></section>
+        <section><h3>Столовая</h3><a href="catalog.html?room=Столовая">Все товары</a><a href="catalog.html?category=Столы">Столы</a><a href="catalog.html?category=Стулья">Стулья</a></section>
+        <section><h3>Спальня</h3><a href="catalog.html?room=Спальня">Все товары</a><a href="catalog.html?category=Кровати">Кровати</a><a href="catalog.html?category=Хранение">Комоды</a></section>
+        <section><h3>Декор</h3><a href="catalog.html?category=Освещение">Освещение</a><a href="catalog.html?room=Декор">Все предметы декора</a></section>
+      </div>
+      <a class="mega__feature" href="catalog.html?new=1"><img src="assets/images/luna.jpg" alt="Soft Forms"><div><span>Новая коллекция</span><strong>Soft Forms 2026</strong><small>Смотреть →</small></div></a>
+    </div>
+  </div>
+
+  <section class="search-panel" data-search>
+    <div class="container search-panel__inner">
+      <label class="search-field"><svg><use href="assets/icons/sprite.svg#search"></use></svg><span class="sr-only">Поиск</span><input data-search-input type="search" placeholder="Что вы ищете?"></label>
+      <div class="search-results" data-search-results><p class="search-empty">Начните вводить название товара.</p></div>
+    </div>
+  </section>
+</header>
+
+<aside class="mobile-panel" data-mobile>
+  <div class="mobile-panel__head"><a class="brand" href="">NORDIC HOME</a><button class="icon-button" data-mobile-button><svg><use href="assets/icons/sprite.svg#close"></use></svg></button></div>
+  <nav><a href="catalog.html">Каталог</a><a href="catalog.html?new=1">Новинки</a><a href="catalog.html?sort=rating">Бестселлеры</a><a href="index.html#story">О бренде</a><a href="account.html#wishlist">Избранное</a><a href="cart.html">Корзина</a></nav>
+</aside>
+<div class="overlay" data-overlay></div>
+
+<main id="main-content">
+  <section class="catalog-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <span><a href="">Главная</a></span>
+        <span>Каталог</span>
+      </nav>
+      <div class="catalog-hero__row">
+        <h1>Каталог</h1>
+        <p>Спокойная мебель для реальной жизни: натуральные материалы, мягкие формы и продуманные детали.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container catalog-layout" data-catalog-top>
+    <aside class="catalog-sidebar" data-filter-drawer>
+      <div class="filter-drawer-head">
+        <strong>Фильтры</strong>
+        <button class="icon-button" type="button" data-close-filters aria-label="Закрыть фильтры"><svg><use href="assets/icons/sprite.svg#close"></use></svg></button>
+      </div>
+
+      <form class="filter-form" data-filter-form>
+        <div class="filter-section">
+          <label class="catalog-search">
+            <svg><use href="assets/icons/sprite.svg#search"></use></svg>
+            <input type="search" placeholder="Поиск в каталоге" data-catalog-search>
+          </label>
+        </div>
+
+        <section class="filter-section" data-accordion>
+          <button class="filter-section__button" type="button" data-accordion-button aria-expanded="true">Категория <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+          <div class="filter-section__body" data-filter-categories></div>
+        </section>
+
+        <section class="filter-section" data-accordion>
+          <button class="filter-section__button" type="button" data-accordion-button aria-expanded="true">Комната <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+          <div class="filter-section__body" data-filter-rooms></div>
+        </section>
+
+        <section class="filter-section" data-accordion>
+          <button class="filter-section__button" type="button" data-accordion-button aria-expanded="true">Цена <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+          <div class="filter-section__body">
+            <div class="price-values">
+              <label class="price-input"><span>От</span><input type="number" data-min-price-value></label>
+              <label class="price-input"><span>До</span><input type="number" data-max-price-value></label>
+            </div>
+            <div class="range-stack">
+              <input type="range" step="1000" data-min-price>
+              <input type="range" step="1000" data-max-price>
+            </div>
+          </div>
+        </section>
+
+        <section class="filter-section" data-accordion>
+          <button class="filter-section__button" type="button" data-accordion-button aria-expanded="true">Материалы <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+          <div class="filter-section__body" data-filter-materials></div>
+        </section>
+
+        <section class="filter-section" data-accordion>
+          <button class="filter-section__button" type="button" data-accordion-button aria-expanded="true">Цвет <svg><use href="assets/icons/sprite.svg#chevron"></use></svg></button>
+          <div class="filter-section__body color-grid" data-filter-colors></div>
+        </section>
+
+        <section class="filter-section">
+          <div class="toggle-list">
+            <label class="toggle-option"><span>Только в наличии</span><input type="checkbox" data-stock><span class="toggle-option__switch"></span></label>
+            <label class="toggle-option"><span>Новинки</span><input type="checkbox" data-new><span class="toggle-option__switch"></span></label>
+            <label class="toggle-option"><span>Со скидкой</span><input type="checkbox" data-sale><span class="toggle-option__switch"></span></label>
+          </div>
+        </section>
+      </form>
+    </aside>
+
+    <section class="catalog-main">
+      <div class="catalog-toolbar">
+        <div class="catalog-toolbar__left">
+          <button class="button button--outline mobile-filter-button" type="button" data-open-filters>Фильтры</button>
+          <span class="catalog-toolbar__count" data-result-count></span>
+        </div>
+
+        <div class="catalog-toolbar__right">
+          <label class="sr-only" for="sort">Сортировка</label>
+          <select class="sort-select" id="sort" data-sort>
+            <option value="featured">Сначала рекомендуемые</option>
+            <option value="newest">Сначала новинки</option>
+            <option value="priceAsc">Сначала дешевле</option>
+            <option value="priceDesc">Сначала дороже</option>
+            <option value="rating">По рейтингу</option>
+            <option value="discount">По размеру скидки</option>
+          </select>
+
+          <div class="view-switcher" aria-label="Количество колонок">
+            <button type="button" data-view="2" aria-label="Две колонки"><span class="view-icon" style="--icon-cols:2"><i></i><i></i></span></button>
+            <button type="button" data-view="3" aria-label="Три колонки"><span class="view-icon" style="--icon-cols:3"><i></i><i></i><i></i></span></button>
+            <button type="button" data-view="4" aria-label="Четыре колонки"><span class="view-icon" style="--icon-cols:4"><i></i><i></i><i></i><i></i></span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-chips" data-filter-chips></div>
+      <div class="catalog-grid" data-catalog-grid data-columns="3"></div>
+      <nav class="pagination" data-pagination aria-label="Страницы каталога"></nav>
+    </section>
+  </div>
+</main>
+
+<div class="filter-overlay" data-filter-overlay></div>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div><a class="brand" href="">NORDIC HOME</a><p>Современная мебель для спокойной и красивой жизни.</p></div>
+    <div><h3>Каталог</h3><a href="catalog.html?category=Диваны">Диваны</a><a href="catalog.html?category=Кресла">Кресла</a><a href="catalog.html?category=Столы">Столы</a><a href="catalog.html?category=Хранение">Хранение</a></div>
+    <div><h3>Покупателям</h3><a href="#">Доставка и оплата</a><a href="#">Возврат</a><a href="#">Гарантия</a><a href="#">Уход</a></div>
+    <div><h3>Компания</h3><a href="about.html">О бренде</a><a href="#">Контакты</a><a href="#">Для дизайнеров</a><a href="#">Вакансии</a></div>
+  </div>
+  <div class="container footer__bottom">© 2026 Nordic Home. Проект L&amp;P AI Studio.</div>
+</footer>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<script type="module" src="js/catalog-app.js"></script>
+<script type="module" src="js/global.js"></script></body>
+</html>
